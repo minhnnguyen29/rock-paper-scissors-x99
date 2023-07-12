@@ -136,7 +136,7 @@ const getTypeWinner = (playerOne, playerTwo) => {
 
         case 'scissorsrock':
         case 'paperscissors':
-        case 'paperrock':
+        case 'rockpaper':
             return 'Player Two'; 
     }
 
