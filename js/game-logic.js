@@ -85,11 +85,47 @@ const getRoundWinner = roundNum => {
 
 // compare both player's move types & types for the whole game 
 const getGameWinner = () => {
+    let winnerRound1 = getRoundWinner(1); 
+    let winnerRound2 = getRoundWinner(2); 
+    let winnerRound3 = getRoundWinner(3); 
+
+    let playerOneScore = 0; 
+    let playerTwoScore = 0; 
+
+    if(winnerRound1 === 'Player One'){
+        playerOneScore++; 
+    } else if (winnerRound1 === 'Player Two'){
+        playerTwoScore++;
+    }
+
+    if(winnerRound2 === 'Player Two'){
+        playerTwoScore++; 
+    } else if(winnerRound2 === 'Player One'){
+        playerOneScore++; 
+    }
+
+    if(winnerRound3 === 'Player One'){
+        playerOneScore++; 
+    } else if(winnerRound3 === 'Player Two'){
+        playerTwoScore++; 
+    }
+
+
+
+    // return winner 
+    if (playerOneScore > playerTwoScore){
+        return 'Player One'; 
+    } else if (playerOneScore < playerTwoScore){
+        return 'Player Two'; 
+    } else {
+        return 'Tie'; 
+    }
 
 }; 
 
 // choose 3 random moves for player TWO 
 const setComputerMoves = () => {
+
 
 }; 
 
@@ -101,27 +137,8 @@ case paper
 case scissors 
 */
 const getTypeWinner = (playerOne, playerTwo) => {
-    /*
-    if (playerOne === 'rock'){
-        if (playerTwo === 'paper'){
-            return 'Player Two';
-        } else if (playerTwo === 'scissors'){
-            return 'Player One'
-        } else { // playerTwo === 'rock' 
-            return 'Tie'; 
-        }
-    } else if (playerOne === 'paper'){
-        if (playerTwo === 'rock'){
-            return 'Player One'; 
-        } else if (playerTwo === 'scissors'){
-            return 'Player Two'; 
-        } else {
-            return 'Tie'; 
-        }
-    }
-    */
-   
-    // group their choices together 
+    
+    // group their choices together to make finding winner easier 
     switch(playerOne + playerTwo) {
         
         case 'rockrock':
