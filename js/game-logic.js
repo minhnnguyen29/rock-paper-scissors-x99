@@ -85,7 +85,8 @@ const getRoundWinner = roundNum => {
 
 // compare both player's move types & types for the whole game 
 const getGameWinner = () => {
-    let winnerRound1 = getRoundWinner(1); 
+
+    let winnerRound1 = getRoundWinner(1);
     let winnerRound2 = getRoundWinner(2); 
     let winnerRound3 = getRoundWinner(3); 
 
@@ -125,6 +126,22 @@ const getGameWinner = () => {
 
 // choose 3 random moves for player TWO 
 const setComputerMoves = () => {
+    
+    playerTwoMoveOneType = getType(Math.floor(Math.random()*3)); 
+    playerTwoMoveTwoType = getType(Math.floor(Math.random()*3));
+    playerTwoMoveThreeType = getType(Math.floor(Math.random()*3)); 
+
+
+    playerTwoMoveOneValue = Math.floor(Math.random()*99); //add up to 99  
+    
+    do {
+        playerTwoMoveTwoValue = Math.floor(Math.random()*99); 
+    } while (playerTwoMoveTwoValue < 99 - playerTwoMoveOneValue )
+    
+    do {
+        playerTwoMoveThreeValue = Math.floor(Math.random()*99); 
+    } while (playerTwoMoveThreeValue <= 99 - playerTwoMoveOneValue - playerTwoMoveTwoValue)
+
 
 
 }; 
@@ -132,10 +149,6 @@ const setComputerMoves = () => {
 // ----------------- Helper functions ------------------
 // determine who wins based on TYPE 
 
-/*TO DO 
-case paper 
-case scissors 
-*/
 const getTypeWinner = (playerOne, playerTwo) => {
     
     // group their choices together to make finding winner easier 
@@ -168,5 +181,16 @@ const getValueWinner = (playerOne, playerTwo) => {
         return 'Player Two'; 
     } else { //equal move value 
         return 'Tie'; 
+    }
+}
+
+const getType = num => {
+    switch(num){
+        case 1: 
+            return 'rock'; 
+        case 2: 
+            return 'paper'; 
+        default: //case 3
+            return 'scissors'; 
     }
 }
