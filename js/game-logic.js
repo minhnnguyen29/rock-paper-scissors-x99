@@ -127,21 +127,20 @@ const getGameWinner = () => {
 // choose 3 random moves for player TWO 
 const setComputerMoves = () => {
     
-    playerTwoMoveOneType = getType(Math.floor(Math.random()*3)); 
-    playerTwoMoveTwoType = getType(Math.floor(Math.random()*3));
-    playerTwoMoveThreeType = getType(Math.floor(Math.random()*3)); 
+    const moves = ['rock', 'paper', 'scissors']; 
+    const computerMoveOneType = moves[Math.floor(Math.random()*3)]; 
+    const computerMoveTwoType = moves[Math.floor(Math.random()*3)];
+    const computerMoveThreeType = moves[Math.floor(Math.random()*3)]; 
 
 
-    playerTwoMoveOneValue = Math.floor(Math.random()*99); //add up to 99  
+    const computerMoveOneValue = Math.floor(Math.random()*96) + 1; // value between 1 -> 97  (leave at least 2)
+    const computerMoveTwoValue = Math.floor(Math.random())*(97 - computerMoveOneValue) + 1; // value between 1 -> (99 - computerMoveOneValue)
+    const computerMoveThreeValue = 99 - computerMoveOneValue - computerMoveTwoValue; 
     
-    do {
-        playerTwoMoveTwoValue = Math.floor(Math.random()*99); 
-    } while (playerTwoMoveTwoValue < 99 - playerTwoMoveOneValue )
-    
-    do {
-        playerTwoMoveThreeValue = Math.floor(Math.random()*99); 
-    } while (playerTwoMoveThreeValue <= 99 - playerTwoMoveOneValue - playerTwoMoveTwoValue)
-
+    // set these values to 'Player Two' using setPlayerMoves() (its role)
+    setPlayerMoves('Player Two', computerMoveOneType, computerMoveOneValue, 
+                    computerMoveTwoType, computerMoveTwoValue, 
+                    computerMoveThreeType, computerMoveThreeValue); 
 
 
 }; 
@@ -181,16 +180,5 @@ const getValueWinner = (playerOne, playerTwo) => {
         return 'Player Two'; 
     } else { //equal move value 
         return 'Tie'; 
-    }
-}
-
-const getType = num => {
-    switch(num){
-        case 1: 
-            return 'rock'; 
-        case 2: 
-            return 'paper'; 
-        default: //case 3
-            return 'scissors'; 
     }
 }
